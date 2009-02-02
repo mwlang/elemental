@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
 		"lib/elemental.rb",
 		"test/test_elemental.rb"
 	]
-  s.rdoc_options = ["--line-numbers", "--inline-source", "--title", "Mongrel", "--main", "README.txt"]
+  s.rdoc_options = ["--line-numbers", "--inline-source", "--title", "Elemental", "--main", "README.txt"]
   s.extra_rdoc_files = ["README.txt"]
 end
 

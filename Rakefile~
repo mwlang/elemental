@@ -24,6 +24,7 @@ PROJ.email = 'mwlang@cybrains.net'
 PROJ.url = 'http://github.com/mwlang/elemental/tree/master'
 PROJ.version = Elemental::VERSION
 PROJ.rubyforge.name = 'elemental'
+
 PROJ.spec.opts << '--color'
 
 # EOF

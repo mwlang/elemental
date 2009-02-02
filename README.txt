@@ -10,6 +10,10 @@ keeping literals away from your conditional logic.
 
 == INSTALL:
 
+Project Hosts:
+  * http://elemental.rubyforge.net
+  * http://github.com/mwlang/elemental/tree/master
+
 From Gem:
     sudo gem install elemental
 
@@ -20,6 +24,12 @@ From Source:
     rake gem:package
     cd pkg
     sudo gem install elemental
+
+Working Examples:
+  Check out the projects in the examples folder for working examples of
+  using Elemental.  Examples may be limited presently, but more are planned.
+  If you have a unique/interesting application of Elemental, please feel free
+  to contact me and let me know about it for possible inclusion.
 
 == FEATURES/PROBLEMS:
 

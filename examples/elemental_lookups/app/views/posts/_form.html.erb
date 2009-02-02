@@ -1,0 +1,22 @@
+  <p>
+		<label>Title</label><br />
+		<%= text_field :post, :title, :value => @post.title %>
+  </p>
+  <p>
+		<label>Body</label><br />
+		<%= text_area :post, :body, :value => @post.body %>
+  </p>
+
+  <p><label>Public Status</label><br />
+    <%= select "post", "public_status",
+      PublicStatus.sort.map{|a| [a.display, a.value]},
+        { :include_blank => false, :selected => PublicStatus.defaults.first.value }
+    %></select>
+  </p>
+
+  <p><label>Comment Type</label><br />
+    <%= select "post", "comment_type",
+      CommentType.sort.map{|a| [a.display, a.value]},
+        { :include_blank => false, :selected => CommentType.defaults.first.value }
+    %></select>
+  </p>

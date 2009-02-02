@@ -1,0 +1,46 @@
+<h1>Raw Data<h1>
+<p>
+  <b>Title:</b>
+  <%=h @post.title %>
+</p>
+
+<p>
+  <b>Body:</b>
+  <%=h @post.body %>
+</p>
+
+<p>
+  <b>Public status:</b>
+  <%=h @post.public_status %>
+</p>
+
+<p>
+  <b>Comment type:</b>
+  <%=h @post.comment_type %>
+</p>
+
+<hr/>
+<h1>Nice Data</h1>
+
+<p>
+  <b>Title:</b>
+  <%=h @post.title %>
+</p>
+
+<p>
+  <b>Body:</b>
+  <%=h @post.body %>
+</p>
+
+<p>
+  <b>Public status:</b>
+  <%=h PublicStatus[@post.public_status].display %>
+</p>
+
+<p>
+  <b>Comment type:</b>
+  <%=h CommentType[@post.comment_type].display %>
+</p>
+
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Back', posts_path %>

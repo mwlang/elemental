@@ -7,7 +7,8 @@ module TestElemental
 
   class TestElemental < Test::Unit::TestCase
 
-    class Fruit < Elemental
+    class Fruit
+      extend Elemental
       member :apple
       member :pear, :default => true
       member :banana, :default => true
@@ -18,7 +19,8 @@ module TestElemental
 
     FRUIT_SIZE = 4
 
-    class Color < Elemental
+    class Color
+      extend Elemental
       member :blue, :display => "Hazel Blue", :default => true
       member :red, :display => "Fire Engine Red"
       member :yellow
@@ -26,7 +28,8 @@ module TestElemental
 
     COLOR_SIZE = 3
 
-    class Car < Elemental
+    class Car
+      extend Elemental
       member :honda, :position => 100
       member :toyota, :position => 30
       member :ford, :position => 50
@@ -36,7 +39,8 @@ module TestElemental
 
     CAR_SIZE = 5
 
-    class JumbledMess < Elemental
+    class JumbledMess
+      extend Elemental
       member :testing
       member :Oh_one
       member :two_three
@@ -45,9 +49,9 @@ module TestElemental
       member :your_idea
     end
 
-    class TalkingNumbers < Elemental
+    class TalkingNumbers
+      extend Elemental
       persist_ordinally
-
       member :zilch
       member :uno
       member :dos

@@ -1,7 +1,7 @@
 = ELEMENTAL
 
 Elemental gives you enumerated sets.  You code symbolically,
-but your symbols (now elements) are very rich in nature.
+keeping literals away from your conditional logic.
 
 == REQUIREMENTS:
 
@@ -21,78 +21,136 @@ From Source:
     cd pkg
     sudo gem install elemental
 
+== FEATURES/PROBLEMS:
+
+  * Code with symbols, easily display what the user needs to see.
+  * Change the display values without worrying about logical side-effects.
+  * Access elements in a variety of ways: symbol, constant, index.
+  * Store in database as either string (the default) or ordinal value.
+  * Elemental is also Enumerable.  You can iterate all members and sort, too.
+  * A default flag can be set that makes it easier to render views.
+
 == DESCRIPTION:
 
-Elemental provides enumerated collection of elements that allow you to
-associate ruby symbols to arbitrary values, thus allowing your code to
-"think" symbolically and unambiguously while giving you the means to
-easily display what end-users need to see.  Additionally, symbols are
-associated with ordinal values, allowing easy storage/retrieval to
-persistent stores (e.g. databases).
+Elemental provides enumerated collection of elements that allow you to associate
+ruby symbols to arbitrary "display" values, thus allowing your code to "think"
+symbolically and unambiguously while giving you the means to easily display what
+end-users need to see. Additionally, symbols are associated with ordinal values,
+allowing easy storage/retrieval to persistent stores (databases, files,
+marshalling, etc) by saving the Element#value as appropriate (String by default,
+Fixnum if you "persist_ordinally").
+
+The primary aim of Elemental is to collect and abstract literals away
+from your code logic. There's an old programmer's wisdom that you should not
+encode your logic using literal values, especially those the end-user is exposed to.
+
+Yet, interpreted languages seem to be famous for sowing the practice of doing
+boolean expressions replete with string literals. Which can be ok until one day
+your client says, "I don't like 'Active' can we use 'enabled' instead?").
 
 In your code, instead of:
 
-  if User.status == 'Active' ...
+  if my_user.status == 'Active' ...
+        or worse
+  my_user.favorite_color = 1
 
-...which is error prone and hard to test.  With Elemental, do this:
+  (what color is 1?!)
 
-  if User.status == UserStatus::active
+The above suffers from the following:
+  - literals are subject to change or are cryptic.
+  - diff spellings mean diff things ('Active' != 'active' != 'Actve').
+  - relying on literals error prone and hard to test.
+  - code is often not readable as-is (what color is 1, again?).
+
+With Elemental, do this:
+
+  if my_user.status == UserStatus::active.value
+  my_user.favorite_color = Color::blue
+
+When you save a value to a persistent store (database, stream, file, etc.), you
+assign the Element#value like so:
+
+  my_user.status = UserStatus::active.value
+
+(more on what you get via "value" later)
 
 If UserStatus::active isn't defined, you get an error immediately that you can
-attribute to a typo in your code.  This behavior is by design in Elemental.
-That's a unit test you *don't* have to write!
+attribute to a typo in your code. This behavior is by design in Elemental.
+That's a unit test you *don't* have to write! Simply define your class or module
+and include the Ruby symbols you need:
 
-== FEATURES/PROBLEMS:
+  class AccountStatus
+    extend Elemental
+    member :active,       :display => 'Active'
+    member :delinquent,   :display => "Account Past Due"
+    member :inactive      :display => "Inactive"
+  end
 
-    * Code with symbols, easily display what the user needs to see.
-    * Change the display values without worrying about logical side-effects.
-    * Access elements in a variety of ways: symbol, constant, index.
-    * Store in database as either string (the default) or ordinal value.
+Elemental can return the Element#value as either a Ruby symbol (Symbol) or an
+ordinal (Fixnum) value. The default is a Ruby symbol. To override this and
+return an ordinal value, use "persist_ordinally" as follows:
+
+  class AccountStatus
+    extend Elemental
+    persist_ordinally
+
+    member :active,       :display => 'Active'
+    member :delinquent,   :display => "Account Past Due"
+    member :inactive      :display => "Inactive"
+  end
 
 == SYNOPSIS:
 
-Establish Elementals like this:
+Elementals are "containers" for your elements (a.k.a. Ruby symbols).
+They are declared like this:
 
-class AccountStatus < Elemental
-  member :active,       :display => 'Active', :default => true
-  member :delinquent,   :display => "Account Past Due"
-  member :inactive      :display => "Inactive"
-end
+  class AccountStatus
+    extend Elemental
+    member :active,       :display => 'Active', :default => true
+    member :delinquent,   :display => "Account Past Due"
+    member :inactive      :display => "Inactive"
+  end
 
-class Fruit < Elemental
-  member :orange,       :position => 10
-  member :banana,       :position => 5,  :default => true
-  member :blueberry,    :position => 15
-end
+  class Fruit
+    extend Elemental
+    member :orange,       :position => 10
+    member :banana,       :position => 5,  :default => true
+    member :blueberry,    :position => 15
+  end
 
-Whereas:
-    * The symbol is main accessor for Elemental
-    * Display is what the end-user sees. Display defaults to the symbol's to_s.
-    * Position lets you define a display sort order (use WidgetType.sort...)
-    * Position defaults to Ordinal value if not given.
-    * Default sort order is the order in which elements are declared (ordinal).
-    * Specifying Position does not change Ordinal value.
+Where:
+  * The symbol is main accessor for Elemental
+  * Display is what the end-user sees. Display defaults to the symbol's to_s.
+  * Position lets you define a display sort order (use WidgetType.sort...)
+  * Position defaults to Ordinal value if not given.
+  * Absent Position, the default sort order is the order in which
+      elements are declared (ordinal).
+  * Specifying Position does not change Ordinal value.
+  * An ElementNotFoundError is raised if you try an nonexistent Symbol.
 
 Another example:
 
-class Color < Elemental
-  member :red,      :display "#FF0000"
-  member :green,    :display "#00FF00"
-  member :blue,     :display "#0000FF"
-end
+  class Color
+    extend Elemental
+    member :red,      :display "#FF0000"
+    member :green,    :display "#00FF00"
+    member :blue,     :display "#0000FF"
+  end
 
 So you roll with this for a few months and decided you don't like primary colors?
 Its simple to change the color constants (in display):
 
-class Color < Elemental
-  member :red,      :display "#AA5555"
-  member :green,    :display "#55AA55"
-  member :blue,     :display "#5555AA"
-end
+  class Color
+    extend Elemental
+    member :red,      :display "#AA5555"
+    member :green,    :display "#55AA55"
+    member :blue,     :display "#5555AA"
+  end
 
 Your code logic remains the same because the symbols didn't change!
 
-To get this benefit, replace your conditionals that use string literals.
+Once you have your Elemental classes defined, replace your conditionals
+that use string literals.
 
 So, instead of:
   if widget.widget_type == "Foo bar"
@@ -109,85 +167,148 @@ Or shorter:
 Or shorter, still:
   if WidgetType[widget.widget_type].is?(:foo_bar)
 
-Seriously:
-    def test_is_conditional
-      assert_equal(true, Fruit::banana.is?(:banana))
-      assert_equal(true, Fruit::banana.is?(Fruit::banana))
-      assert_equal(false, Fruit::banana.is?(:kiwi))
-      assert_equal(true, TalkingNumbers[1].is?(:uno))
-      assert_equal(true, TalkingNumbers[2].is?("dos"))
-      assert_equal(true, TalkingNumbers["tres"].is?(3))
-    end
-
-For Rails, You can stop hitting database for small, rarely changing lists.
+Although Elemental wasn't specifically written for Rails, it is trivial to put to use.  Instead
+if creating a new model and migration script and all that, simply establish your Elemental
+class definition and then iterate the Elemental to construct your views as appropriate.
 
 With Elemental, simply populate select dropdowns like this:
 
-  <p><label for="widget_type">Type</label><br/>
-    <%= select "widget", "widget_type",
-      WidgetType.sort.map{|wt| [wt.display, wt.value]},
+in your $RAILS_ROOT/config/initializers/constants.rb:
+
+  class AccountStatus
+    extend Elemental
+    member :active,       :display => 'Active', :default => true
+    member :delinquent,   :display => "Account Past Due"
+    member :inactive      :display => "Inactive"
+  end
+
+Then in your view:
+
+  <p><label for="account_status">Account Status</label><br/>
+    <%= select "user", "status",
+      AccountStatus.sort.map{|a| [a.display, a.value]},
       { :include_blank => false,
-        :selected => WidgetType.defaults.first.value }
+        :selected => AccountStatus.defaults.first.value }
     %></select>
   </p>
+
+Or render checkboxes with:
+
+  <% Color.sort.each |c| do %>
+			<%= check_box_tag("user[favorite_colors][#{c.value}]",
+			  "1", Color.defaults.detect{|color| color == c}) %>
+			<%= "#{c.display}"%><br />
+  <% end %>
+
+Life is simplified because:
+  - No more migrate scripts for tiny tables
+  - No worries that the auto-incrementer is guaranteeing to assign
+      same ID accross deployments.
+  - No database penalties looking up rarely changing values
+  - No worries that an empty lookup table breaks your application logic/flow
+  - Values that mean something in your app are symbolic while what's displayed
+      and sorted on are free to change as the application grows and evolves.
 
 More than one default is supported (dropdowns only use one, so first.value
 gets you first one, radio buttons or checkboxes can use all defaults). Ordinal
 position is preserved and traditionally shouldn't be changed during the life
 of the project, although, Ruby being Ruby and developers saying "Ruby ain't C,"
 an Elemental's elements almost definitely will get changed by some developer at
-some time. As such, the default behavior for "value" is to return the symbol
-rather than ordinal value and storing as a string in DB, which seems the safest
-route to take albeit not the optimal performance-wise (finding records by
-integral value is faster than string searches, even with indexes in place).
-If you want to override this, simply call "persist_ordinally" when you
-declare your Elemental classes.
+some time.
 
-class Color < Elemental
-  persist_ordinally
-  member :red
-  member :green
-  member :blue
-end
+The chances of the name of the symbol changing is much lower than a developer's
+tendency to keep an orderly house by sorting member elements alphabetically. As
+such, the default behavior for "value" is to return the symbol rather than
+ordinal value and storing as a string in DB, which seems the safest route to
+take albeit not the optimal performance-wise (finding records by integral value
+is faster than string searches, even with indexes in place). If you want to
+override this, simply call "persist_ordinally" when you declare your Elemental
+classes.
 
-With that, Color::red.value returns Fixnum 0 instead of Symbol :red
+  class Color
+    extend Elemental
+    persist_ordinally
+    member :red
+    member :green
+    member :blue
+  end
+
+With that, Color::red.value returns Fixnum 0 instead of the Symbol :red
 
 Elements can be accessed multiple ways:
 
-def test_different_retrievals_get_same_element
-  a1 = Car::honda
-  a2 = Car::Honda
-  a3 = Car[:honda]
-  a4 = Car[:Honda]
-  a5 = Car["Honda"]
-  a6 = Car["honda"]
-  a7 = Car.first
-  a8 = Car.last.succ
-  a9 = Car[0]
-  assert_element_sameness(a1, a2, :honda)
-  assert_element_sameness(a2, a3, :honda)
-  assert_element_sameness(a4, a5, :honda)
-  assert_element_sameness(a6, a7, :honda)
-  assert_element_sameness(a8, a1, :honda)
-  assert_element_sameness(a9, a2, :honda)
-end
+  def test_different_retrievals_get_same_element
+    a1 = Car::honda
+    a2 = Car::Honda
+    a3 = Car[:honda]
+    a4 = Car[:Honda]
+    a5 = Car["Honda"]
+    a6 = Car["honda"]
+    a7 = Car.first
+    a8 = Car.last.succ
+    a9 = Car[0]
+    assert_element_sameness(a1, a2, :honda)
+    assert_element_sameness(a2, a3, :honda)
+    assert_element_sameness(a4, a5, :honda)
+    assert_element_sameness(a6, a7, :honda)
+    assert_element_sameness(a8, a1, :honda)
+    assert_element_sameness(a9, a2, :honda)
+  end
 
 There are also several convenience aliases to pull ordinal, value, symbol and display:
 
-def test_aliases
-  assert_equal(Car::toyota.index, Car::toyota.to_i)
-  assert_equal(Car::toyota.to_i, Car::toyota.to_i)
-  assert_equal(Car::toyota.to_int, Car::toyota.to_i)
-  assert_equal(Car::toyota.ord, Car::toyota.to_i)
-  assert_equal(Car::toyota.ordinal, Car::toyota.to_i)
-  assert_equal(Car::toyota.to_sym, Car::toyota.value)
-  assert_equal(:toyota, Car::toyota.to_sym)
-  assert_equal(:toyota, Car::toyota.value)
-  assert_equal("toyota", Car::toyota.display)
-  assert_equal("toyota", Car::toyota.humanize)
-end
+  def test_aliases
+    assert_equal(Car::toyota.index, Car::toyota.to_i)
+    assert_equal(Car::toyota.to_i, Car::toyota.to_i)
+    assert_equal(Car::toyota.to_int, Car::toyota.to_i)
+    assert_equal(Car::toyota.ord, Car::toyota.to_i)
+    assert_equal(Car::toyota.ordinal, Car::toyota.to_i)
+    assert_equal(Car::toyota.to_sym, Car::toyota.value)
+    assert_equal(:toyota, Car::toyota.to_sym)
+    assert_equal(:toyota, Car::toyota.value)
+    assert_equal("toyota", Car::toyota.display)
+    assert_equal("toyota", Car::toyota.humanize)
+  end
 
 Full test coverage is provided.
+
+One known limitation (which is probably a reflection of my not-so-great Ruby skills):
+
+You cannot inherit and Elemental from another Elemental, esp. since none of the classes or
+modules are ever actually instantiated.  The following will NOT WORK:
+
+  class Fruit           # OK
+    extend Elemental
+    member :orange
+    member :banana
+    member :blueberry
+  end
+
+  class Vegetable       # OK
+    extend Elemental
+    member :potato
+    member :carrot
+    member :tomato
+  end
+
+  class Food            # NOT OK
+    extend Fruit
+    extend Vegetable
+  end
+
+Also, this doesn't work, either:
+
+  class Food < Fruit   # NOT OK
+    extend Vegetable
+  end
+
+Nor:
+
+  class ExoticFruit < Fruit   # NOT OK
+    member :papaya
+    member :mango
+  end
+
 
 == LICENSE:
 

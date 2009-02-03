@@ -67,7 +67,8 @@ module Elemental
   # allows you to define aliases for a given member with adding
   # additional elements to the elemental class.
   #
-  #    class Fruit < Elemental
+  #    class Fruit
+  #      extend Elemental
   #      member :apple
   #      member :kiwi
   #      synonym :machintosh, :apple
@@ -144,7 +145,7 @@ module Elemental
 
   # Takes a "CamelCased-String" and returns "camel_cased_string"
   def underscore(camel_cased_word)
-    camel_cased_word.to_s.gsub(/::/, '/').
+    camel_cased_word.to_s.
       gsub(/([A-Z]+)([A-Z][a-z])/,'\1_\2').
       gsub(/([a-z\d])([A-Z])/,'\1_\2').
       tr("-", "_").

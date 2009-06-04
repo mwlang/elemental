@@ -34,6 +34,7 @@ Working Examples:
 == FEATURES/PROBLEMS:
 
   * Code with symbols, easily display what the user needs to see.
+  * Associate any number of values/attributes with a symbolic element.
   * Change the display values without worrying about logical side-effects.
   * Access elements in a variety of ways: symbol, constant, index.
   * Store in database as either string (the default) or ordinal value.
@@ -244,6 +245,23 @@ classes.
   end
 
 With that, Color::red.value returns Fixnum 0 instead of the Symbol :red
+
+You can also associate many values with a particular element through custom accessors.  
+To extend the Color example further:
+
+class Color
+  extend Elemental
+  persist_ordinally
+  member :red, :display => "Primary Red", :red => 255, :green => 0, :blue => 0, :hex => "#FF0000"
+  member :green, :display => "Primary Green", :red => 0, :green => 255, :blue => 0, :hex => "#00FF00"
+  member :blue, :display => "Primary Blue", :red => 0, :green => 0, :blue => 255, :hex => "#0000FF"
+end
+
+With that:
+  Color::red.red => 255
+  Color::red.green => 0
+  Color::red.blue => 0
+  Color::red.hex => "#FF0000"
 
 Elements can be accessed multiple ways:
 

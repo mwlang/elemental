@@ -1,4 +1,8 @@
-== 1.0.0 / 2009-02-01
+== 0.2.0 / 2009-06-03
+
+* Added support for any accessor
+
+== 0.1.0 / 2009-02-01
 
 * 1 major enhancement
   * Birthday!

@@ -52,10 +52,10 @@ module TestElemental
     class TalkingNumbers
       extend Elemental
       persist_ordinally
-      member :zilch
-      member :uno
-      member :dos
-      member :tres
+      member :zilch, :display => "zero", :alt => "zip", :zero => true, :custom => 0
+      member :uno,:display => "one", :alt => "1st", :zero => false, :custom => 1.0
+      member :dos, :display => "two", :alt => "2nd", :zero => false, :custom => 2
+      member :tres, :display => "three", :alt => "3rd", :zero => false, :custom => "3"
     end
 
     def test_values_as_ordinal
@@ -372,6 +372,22 @@ module TestElemental
       assert_equal(true, TalkingNumbers[1].is?(:uno))
       assert_equal(true, TalkingNumbers[2].is?("dos"))
       assert_equal(true, TalkingNumbers["tres"].is?(3))
+    end
+
+    def test_extended_attributes
+      assert_equal('1st', TalkingNumbers[1].alt)
+      assert_equal('2nd', TalkingNumbers[:dos].alt)
+      assert_equal('3rd', TalkingNumbers["tres"].alt)
+
+      assert_equal(true, TalkingNumbers[0].zero)
+      assert_equal(false, TalkingNumbers[1].zero)
+      assert_equal(false, TalkingNumbers[:dos].zero)
+      assert_equal(false, TalkingNumbers["tres"].zero)
+
+      assert_equal(0, TalkingNumbers[0].custom)
+      assert_equal(true, TalkingNumbers[1].custom.is_a?(Float))
+      assert_equal(true, TalkingNumbers[2].custom.is_a?(Fixnum))
+      assert_equal(true, TalkingNumbers[3].custom.is_a?(String))
     end
 
     def test_synonym_accessor

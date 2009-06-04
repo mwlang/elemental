@@ -53,12 +53,7 @@ module Elemental
     @unordered_elements ||= {}
     @ordered_elements ||= []
     symbol = conform_to_symbol(symbol)
-
-    element = Element.new(self, symbol, @ordered_elements.size,
-      :display => options[:display] || symbol.to_s,
-      :position => options[:position],
-      :default => options[:default]
-      )
+    element = Element.new(self, symbol, @ordered_elements.size, options)
 
     @unordered_elements[symbol] = element
     @ordered_elements << element

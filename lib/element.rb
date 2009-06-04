@@ -29,6 +29,14 @@ class Element
     @elemental = elemental
     @symbol = symbol
     @ordinal = ordinal
+    
+    # Sets all options and optionally creates an accessor method
+    options.each do |k, v|
+      eval("def #{k}; @#{k}; end") unless respond_to?(k)
+      v.is_a?(String) ? eval("@#{k} = '#{v}'") : eval("@#{k} = #{v}")
+    end
+    
+    # Force the following values (overrides above looped assignments)
     @default = options[:default] || false
     @display = options[:display] || symbol.to_s
     @position = options[:position] || ordinal

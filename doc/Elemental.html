@@ -1,0 +1,1262 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=UTF-8" />
+<title>Module: Elemental</title>
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index (E)</a> &raquo; 
+    
+    
+    <span class="title">Elemental</span>
+  
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Namespace List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Module: Elemental 
+  
+  
+</h1>
+
+<dl class="box">
+  
+  
+    
+  
+    
+      <dt class="r1">Includes:</dt>
+      <dd class="r1">Enumerable</dd>
+      
+    
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/elemental.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+
+  <h2>Constant Summary</h2>
+  
+    <dl class="constants">
+      
+        <dt id="VERSION-constant ">VERSION =
+            <span class="summary_desc"></span>
+        </dt>
+        <dd><pre class="code"><span class='string val'>'0.1.1'</span>
+</pre></dd>
+      
+    </dl>
+  
+
+
+  
+  <h2>Attribute Summary</h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature"><a href="#value_as_ordinal-instance_method" title="#value_as_ordinal (instance method)">- (true or false) <strong>value_as_ordinal</strong> </a>
+  
+  </span>
+  
+    <span class="note title readonly">readonly</span>
+    
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Affects whether #value returns symbolic name for element or ordinal value.
+
+</span>
+  
+</li>
+
+    
+  </ul>
+
+
+  <h2>Method Summary</h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature"><a href="#%5B%5D-instance_method" title="#[] (instance method)">- (Element) <strong>[]</strong>(value) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Shortcut to getting to a specific element Can get by symbol or constant
+(i.e. Color[:red] or Color[:Red]).
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a href="#const_missing-instance_method" title="#const_missing (instance method)">- (Element) <strong>const_missing</strong>(const) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Allows Car::Honda.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a href="#defaults-instance_method" title="#defaults (instance method)">- (Array of Element) <strong>defaults</strong> </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Returns all elements that are flagged as a default.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a href="#each-instance_method" title="#each (instance method)">- (Object) <strong>each</strong>(&amp;block) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Iterates over the elements, passing each Element to the given block.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a href="#first-instance_method" title="#first (instance method)">- (Element) <strong>first</strong> </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Returns the first element in this class.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a href="#inspect-instance_method" title="#inspect (instance method)">- (String) <strong>inspect</strong> </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Outputs a sensible inspect string.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a href="#last-instance_method" title="#last (instance method)">- (Element) <strong>last</strong> </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Returns the last element in this class.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a href="#member-instance_method" title="#member (instance method)">- (Object) <strong>member</strong>(symbol, options = {}) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Adds an element in the order given to the enumerable&#8217;s class Order
+matters if you store ordinal to database or other persistent stores.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a href="#method_missing-instance_method" title="#method_missing (instance method)">- (Element) <strong>method_missing</strong>(value) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Allows Car::honda.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a href="#persist_ordinally-instance_method" title="#persist_ordinally (instance method)">- (Object) <strong>persist_ordinally</strong> </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Causes the Element#value method to return ordinal value, which normally
+returns the ruby symbol.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a href="#pred-instance_method" title="#pred (instance method)">- (Element) <strong>pred</strong>(value) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Returns the element that precedes the given element.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a href="#size-instance_method" title="#size (instance method)">- (Fixnum) <strong>size</strong> </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Returns the number of elements added.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a href="#succ-instance_method" title="#succ (instance method)">- (Element) <strong>succ</strong>(value) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Returns the element that follows the given element.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a href="#synonym-instance_method" title="#synonym (instance method)">- (Object) <strong>synonym</strong>(new_symbol, existing_symbol) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Allows you to define aliases for a given member with adding additional
+elements to the elemental class.
+
+</span>
+  
+</li>
+
+    
+  </ul>
+
+
+  <div id="method_missing_details">
+  <h2>Dynamic Method Handling</h2>
+  <p class="notice this">
+    This class handles dynamic methods through the <tt>method_missing</tt> method
+    
+  </p>
+  
+    <div class="method_details first">
+  <p class="signature first" id="method_missing-instance_method">
+  
+    - (<tt><a href="Element.html" title="Element">Element</a></tt>) <strong>method_missing</strong>(value) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Allows Car::honda
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt><a href="Element.html" title="Element">Element</a></tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+152
+153
+154</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/elemental.rb', line 152</span>
+
+<span class='def def kw'>def</span> <span class='method_missing identifier id'>method_missing</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
+  <span class='self self kw'>self</span><span class='lbrack token'>[</span><span class='value identifier id'>value</span><span class='rbrack token'>]</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="attr_details">
+    <h2>Attribute Details</h2>
+    
+      
+      <span id=""></span>
+      <span id="value_as_ordinal-instance_method"></span>
+      <div class="method_details first">
+  <p class="signature first" id="value_as_ordinal-instance_method">
+  
+    - (<tt>true or false</tt>) <strong>value_as_ordinal</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Affects whether #value returns symbolic name for element or ordinal value
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>true or false</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        
+value is ordinal value when true
+
+
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+39
+40
+41</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/elemental.rb', line 39</span>
+
+<span class='def def kw'>def</span> <span class='value_as_ordinal identifier id'>value_as_ordinal</span>
+  <span class='@value_as_ordinal ivar id'>@value_as_ordinal</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="method_details">
+    <h2>Method Details</h2>
+    
+      <div class="method_details first">
+  <p class="signature first" id="[]-instance_method">
+  
+    - (<tt><a href="Element.html" title="Element">Element</a></tt>) <strong>[]</strong>(value) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Shortcut to getting to a specific element Can get by symbol or constant
+(i.e. Color[:red] or Color[:Red])
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>Symbol</tt>, <tt>Fixnum</tt>)</span>
+      
+      
+        <span class='name'>value</span>
+      
+      
+      
+        &mdash;
+        
+the Element to retrieve, referenced either by ordinal position or by
+symbolic representation for the element.
+
+
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt><a href="Element.html" title="Element">Element</a></tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+139
+140
+141</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/elemental.rb', line 139</span>
+
+<span class='def def kw'>def</span> <span class='aref op'>[]</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
+  <span class='value identifier id'>value</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='Fixnum constant id'>Fixnum</span><span class='rparen token'>)</span> <span class='question op'>?</span> <span class='get_ordered_element identifier id'>get_ordered_element</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span> <span class='colon op'>:</span> <span class='get_unordered_element identifier id'>get_unordered_element</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="const_missing-instance_method">
+  
+    - (<tt><a href="Element.html" title="Element">Element</a></tt>) <strong>const_missing</strong>(const) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Allows Car::Honda
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt><a href="Element.html" title="Element">Element</a></tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+159
+160
+161</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/elemental.rb', line 159</span>
+
+<span class='def def kw'>def</span> <span class='const_missing identifier id'>const_missing</span><span class='lparen token'>(</span><span class='const identifier id'>const</span><span class='rparen token'>)</span>
+  <span class='get_unordered_element identifier id'>get_unordered_element</span><span class='lparen token'>(</span><span class='const identifier id'>const</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="defaults-instance_method">
+  
+    - (<tt>Array of <a href="Element.html" title="Element">Element</a></tt>) <strong>defaults</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns all elements that are flagged as a default
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Array of <a href="Element.html" title="Element">Element</a></tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+166
+167
+168</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/elemental.rb', line 166</span>
+
+<span class='def def kw'>def</span> <span class='defaults identifier id'>defaults</span>
+  <span class='@ordered_elements ivar id'>@ordered_elements</span><span class='dot token'>.</span><span class='select identifier id'>select</span><span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='s identifier id'>s</span><span class='bitor op'>|</span> <span class='s identifier id'>s</span><span class='dot token'>.</span><span class='default? fid id'>default?</span><span class='rbrace token'>}</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="each-instance_method">
+  
+    - (<tt>Object</tt>) <strong>each</strong>(&amp;block) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Iterates over the elements, passing each Element to the given block
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+145
+146
+147</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/elemental.rb', line 145</span>
+
+<span class='def def kw'>def</span> <span class='each identifier id'>each</span><span class='lparen token'>(</span><span class='bitand op'>&amp;</span><span class='block identifier id'>block</span><span class='rparen token'>)</span>
+  <span class='@ordered_elements ivar id'>@ordered_elements</span><span class='dot token'>.</span><span class='each identifier id'>each</span><span class='lparen token'>(</span><span class='bitand op'>&amp;</span><span class='block identifier id'>block</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="first-instance_method">
+  
+    - (<tt><a href="Element.html" title="Element">Element</a></tt>) <strong>first</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns the first element in this class
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt><a href="Element.html" title="Element">Element</a></tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+89
+90
+91</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/elemental.rb', line 89</span>
+
+<span class='def def kw'>def</span> <span class='first identifier id'>first</span>
+  <span class='@ordered_elements ivar id'>@ordered_elements</span><span class='dot token'>.</span><span class='first identifier id'>first</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="inspect-instance_method">
+  
+    - (<tt>String</tt>) <strong>inspect</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Outputs a sensible inspect string
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+173
+174
+175</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/elemental.rb', line 173</span>
+
+<span class='def def kw'>def</span> <span class='inspect identifier id'>inspect</span>
+  <span class='dstring node'>&quot;#&lt;#{self}:#{object_id} #{@ordered_elements.inspect}&gt;&quot;</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="last-instance_method">
+  
+    - (<tt><a href="Element.html" title="Element">Element</a></tt>) <strong>last</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns the last element in this class
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt><a href="Element.html" title="Element">Element</a></tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+97
+98
+99</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/elemental.rb', line 97</span>
+
+<span class='def def kw'>def</span> <span class='last identifier id'>last</span>
+  <span class='@ordered_elements ivar id'>@ordered_elements</span><span class='dot token'>.</span><span class='last identifier id'>last</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="member-instance_method">
+  
+    - (<tt>Object</tt>) <strong>member</strong>(symbol, options = {}) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Adds an element in the order given to the enumerable&#8217;s class Order
+matters if you store ordinal to database or other persistent stores
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+57
+58
+59
+60
+61
+62
+63
+64
+65</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/elemental.rb', line 57</span>
+
+<span class='def def kw'>def</span> <span class='member identifier id'>member</span><span class='lparen token'>(</span><span class='symbol identifier id'>symbol</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+  <span class='@unordered_elements ivar id'>@unordered_elements</span> <span class='opasgn op'>||=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
+  <span class='@ordered_elements ivar id'>@ordered_elements</span> <span class='opasgn op'>||=</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span>
+  <span class='symbol identifier id'>symbol</span> <span class='assign token'>=</span> <span class='conform_to_symbol identifier id'>conform_to_symbol</span><span class='lparen token'>(</span><span class='symbol identifier id'>symbol</span><span class='rparen token'>)</span>
+  <span class='element identifier id'>element</span> <span class='assign token'>=</span> <span class='Element constant id'>Element</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='self self kw'>self</span><span class='comma token'>,</span> <span class='symbol identifier id'>symbol</span><span class='comma token'>,</span> <span class='@ordered_elements ivar id'>@ordered_elements</span><span class='dot token'>.</span><span class='size identifier id'>size</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='rparen token'>)</span>
+
+  <span class='@unordered_elements ivar id'>@unordered_elements</span><span class='lbrack token'>[</span><span class='symbol identifier id'>symbol</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='element identifier id'>element</span>
+  <span class='@ordered_elements ivar id'>@ordered_elements</span> <span class='lshft op'>&lt;&lt;</span> <span class='element identifier id'>element</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="persist_ordinally-instance_method">
+  
+    - (<tt>Object</tt>) <strong>persist_ordinally</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+  <p class="note notetag">
+    <strong>Note:</strong> 
+    
+If you choose for Element#value to return ordinal and you are storing value
+to database, then you should always APPEND new elements to the declared
+Elemental class. Otherwise, you WILL CHANGE the ordinal values and thus
+invalidate any persistent stores. If you&#8217;re not persistently storing
+ordinal values, then order of membership is moot.
+
+
+  </p>
+
+<p>
+Causes the Element#value method to return ordinal value, which normally
+returns the ruby symbol
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+50
+51
+52</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/elemental.rb', line 50</span>
+
+<span class='def def kw'>def</span> <span class='persist_ordinally identifier id'>persist_ordinally</span>
+  <span class='@value_as_ordinal ivar id'>@value_as_ordinal</span> <span class='assign token'>=</span> <span class='true true kw'>true</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="pred-instance_method">
+  
+    - (<tt><a href="Element.html" title="Element">Element</a></tt>) <strong>pred</strong>(value) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns the element that precedes the given element. If given element is
+the first element, then last element is returned.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>Symbol</tt>)</span>
+      
+      
+        <span class='name'>value</span>
+      
+      
+      
+        &mdash;
+        
+the symbolic reference to the element
+
+
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt><a href="Element.html" title="Element">Element</a></tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+126
+127
+128
+129</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/elemental.rb', line 126</span>
+
+<span class='def def kw'>def</span> <span class='pred identifier id'>pred</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
+  <span class='index identifier id'>index</span> <span class='assign token'>=</span> <span class='self self kw'>self</span><span class='lbrack token'>[</span><span class='value identifier id'>value</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='to_i identifier id'>to_i</span> <span class='minus op'>-</span> <span class='integer val'>1</span>
+  <span class='lparen token'>(</span><span class='index identifier id'>index</span> <span class='lt op'>&lt;</span> <span class='integer val'>0</span><span class='rparen token'>)</span> <span class='question op'>?</span> <span class='last identifier id'>last</span> <span class='colon op'>:</span> <span class='@ordered_elements ivar id'>@ordered_elements</span><span class='lbrack token'>[</span><span class='index identifier id'>index</span><span class='rbrack token'>]</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="size-instance_method">
+  
+    - (<tt>Fixnum</tt>) <strong>size</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns the number of elements added
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Fixnum</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+105
+106
+107</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/elemental.rb', line 105</span>
+
+<span class='def def kw'>def</span> <span class='size identifier id'>size</span>
+  <span class='@ordered_elements ivar id'>@ordered_elements</span><span class='dot token'>.</span><span class='size identifier id'>size</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="succ-instance_method">
+  
+    - (<tt><a href="Element.html" title="Element">Element</a></tt>) <strong>succ</strong>(value) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns the element that follows the given element. If given element is
+last element, then first element is returned.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>Symbol</tt>)</span>
+      
+      
+        <span class='name'>value</span>
+      
+      
+      
+        &mdash;
+        
+the symbolic reference to the element
+
+
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt><a href="Element.html" title="Element">Element</a></tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+115
+116
+117
+118</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/elemental.rb', line 115</span>
+
+<span class='def def kw'>def</span> <span class='succ identifier id'>succ</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
+  <span class='index identifier id'>index</span> <span class='assign token'>=</span> <span class='self self kw'>self</span><span class='lbrack token'>[</span><span class='value identifier id'>value</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='to_i identifier id'>to_i</span> <span class='plus op'>+</span> <span class='integer val'>1</span>
+  <span class='lparen token'>(</span><span class='index identifier id'>index</span> <span class='geq op'>&gt;=</span> <span class='size identifier id'>size</span><span class='rparen token'>)</span> <span class='question op'>?</span> <span class='first identifier id'>first</span> <span class='colon op'>:</span> <span class='@ordered_elements ivar id'>@ordered_elements</span><span class='lbrack token'>[</span><span class='index identifier id'>index</span><span class='rbrack token'>]</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="synonym-instance_method">
+  
+    - (<tt>Object</tt>) <strong>synonym</strong>(new_symbol, existing_symbol) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Allows you to define aliases for a given member with adding additional
+elements to the elemental class.
+</p>
+<pre class="code">
+   <span class='class class kw'>class</span> <span class='Fruit constant id'>Fruit</span>
+     <span class='extend identifier id'>extend</span> <span class='Elemental constant id'>Elemental</span>
+     <span class='member identifier id'>member</span> <span class='symbol val'>:apple</span>
+     <span class='member identifier id'>member</span> <span class='symbol val'>:kiwi</span>
+     <span class='synonym identifier id'>synonym</span> <span class='symbol val'>:machintosh</span><span class='comma token'>,</span> <span class='symbol val'>:apple</span>
+   <span class='end end kw'>end</span>
+</pre>
+<p>
+will yield an Elemental with only two elements (apple and kiwi), but give
+the ability to retrieve Fruit::apple using Fruit::machintosh
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+80
+81
+82
+83</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/elemental.rb', line 80</span>
+
+<span class='def def kw'>def</span> <span class='synonym identifier id'>synonym</span><span class='lparen token'>(</span><span class='new_symbol identifier id'>new_symbol</span><span class='comma token'>,</span> <span class='existing_symbol identifier id'>existing_symbol</span><span class='rparen token'>)</span>
+  <span class='element identifier id'>element</span> <span class='assign token'>=</span> <span class='self self kw'>self</span><span class='lbrack token'>[</span><span class='existing_symbol identifier id'>existing_symbol</span><span class='rbrack token'>]</span>
+  <span class='@unordered_elements ivar id'>@unordered_elements</span><span class='lbrack token'>[</span><span class='conform_to_symbol identifier id'>conform_to_symbol</span><span class='lparen token'>(</span><span class='new_symbol identifier id'>new_symbol</span><span class='rparen token'>)</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='element identifier id'>element</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Mon Nov 23 13:48:07 2009 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
+  0.4.0 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

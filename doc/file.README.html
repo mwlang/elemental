@@ -1,0 +1,460 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=UTF-8" />
+<title>Documentation by YARD 0.4.0</title>
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html" title="Index">Index</a> &raquo; 
+    <span class="title">File: README</span>
+  
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Namespace List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><div id='filecontents'><h1>ELEMENTAL</h1>
+
+<p>Elemental gives you enumerated sets.  You code symbolically,
+keeping literals away from your conditional logic.</p>
+
+<h2>REQUIREMENTS:</h2>
+
+<ul>
+<li>Ruby 1.8+</li>
+<li>Ruby Gems</li>
+</ul>
+
+<h2>INSTALL:</h2>
+
+<p>Project Hosts:</p>
+
+<ul>
+<li><a href="http://elemental.rubyforge.net">Rubyforge</a></li>
+<li><a href="http://github.com/mwlang/elemental/tree/master">Github</a></li>
+</ul>
+
+<p>From Gem:</p>
+
+<pre class="code"><span class='sudo identifier id'>sudo</span> <span class='gem identifier id'>gem</span> <span class='install identifier id'>install</span> <span class='elemental identifier id'>elemental</span>
+</pre>
+
+<p>From Source:</p>
+
+<pre class="code"><span class='gem identifier id'>gem</span> <span class='install identifier id'>install</span> <span class='bones identifier id'>bones</span><span class='comma token'>,</span> <span class='rake identifier id'>rake</span><span class='comma token'>,</span> <span class='test identifier id'>test</span><span class='minus op'>-</span><span class='unit identifier id'>unit</span>
+<span class='git identifier id'>git</span> <span class='clone identifier id'>clone</span> <span class='git identifier id'>git</span><span class='symbol val'>:/</span><span class='regexp val'>/github.com/</span><span class='mwlang identifier id'>mwlang</span><span class='div op'>/</span><span class='elemental identifier id'>elemental</span><span class='dot token'>.</span><span class='git identifier id'>git</span>
+<span class='cd identifier id'>cd</span> <span class='elemental identifier id'>elemental</span>
+<span class='rake identifier id'>rake</span> <span class='gem identifier id'>gem</span><span class='symbol val'>:package</span>
+<span class='cd identifier id'>cd</span> <span class='pkg identifier id'>pkg</span>
+<span class='sudo identifier id'>sudo</span> <span class='gem identifier id'>gem</span> <span class='install identifier id'>install</span> <span class='elemental identifier id'>elemental</span>
+</pre>
+
+<h3>Working Examples:</h3>
+
+<p>Check out the projects in the examples folder for working examples of
+ using Elemental.  Examples may be limited presently, but more are planned.
+ If you have a unique/interesting application of Elemental, please feel free
+ to contact me and let me know about it for possible inclusion.</p>
+
+<h2>FEATURES/PROBLEMS:</h2>
+
+<ul>
+<li>Code with symbols, easily display what the user needs to see.</li>
+<li>Associate any number of values/attributes with a symbolic element.</li>
+<li>Change the display values without worrying about logical side-effects.</li>
+<li>Access elements in a variety of ways: symbol, constant, index.</li>
+<li>Store in database as either string (the default) or ordinal value.</li>
+<li>Elemental is also Enumerable.  You can iterate all members and sort, too.</li>
+<li>A default flag can be set that makes it easier to render views.</li>
+</ul>
+
+<h2>DESCRIPTION:</h2>
+
+<p>Elemental provides enumerated collection of elements that allow you to associate
+ruby symbols to arbitrary "display" values, thus allowing your code to "think"
+symbolically and unambiguously while giving you the means to easily display what
+end-users need to see. Additionally, symbols are associated with ordinal values,
+allowing easy storage/retrieval to persistent stores (databases, files,
+marshalling, etc) by saving the Element#value as appropriate (String by default,
+Fixnum if you "persist_ordinally").</p>
+
+<p>The primary aim of Elemental is to collect and abstract literals away
+from your code logic. There's an old programmer's wisdom that you should not
+encode your logic using literal values, especially those the end-user is exposed to.</p>
+
+<p>Yet, interpreted languages seem to be famous for sowing the practice of doing
+boolean expressions replete with string literals. Which can be ok until one day
+your client says, "I don't like 'Active' can we use 'enabled' instead?").</p>
+
+<p>In your code, instead of:</p>
+
+<pre class="code"><span class='if if kw'>if</span> <span class='my_user identifier id'>my_user</span><span class='dot token'>.</span><span class='status identifier id'>status</span> <span class='eq op'>==</span> <span class='string val'>'Active'</span> <span class='dot3 op'>...</span>
+</pre>
+
+<p>or worse</p>
+
+<pre class="code"><span class='my_user identifier id'>my_user</span><span class='dot token'>.</span><span class='favorite_color identifier id'>favorite_color</span> <span class='assign token'>=</span> <span class='integer val'>1</span>
+</pre>
+
+<p>(what color is 1?!)</p>
+
+<p>The above suffers from the following:</p>
+
+<ul>
+<li>literals are subject to change or are cryptic.</li>
+<li>diff spellings mean diff things ('Active' != 'active' != 'Actve').</li>
+<li>relying on literals error prone and hard to test.</li>
+<li>code is often not readable as-is (what color is 1, again?).</li>
+</ul>
+
+<p>With Elemental, do this:</p>
+
+<pre class="code"><span class='if if kw'>if</span> <span class='my_user identifier id'>my_user</span><span class='dot token'>.</span><span class='status identifier id'>status</span> <span class='eq op'>==</span> <span class='UserStatus constant id'>UserStatus</span><span class='colon2 op'>::</span><span class='active identifier id'>active</span><span class='dot token'>.</span><span class='value identifier id'>value</span>
+<span class='my_user identifier id'>my_user</span><span class='dot token'>.</span><span class='favorite_color identifier id'>favorite_color</span> <span class='assign token'>=</span> <span class='Color constant id'>Color</span><span class='colon2 op'>::</span><span class='blue identifier id'>blue</span>
+</pre>
+
+<p>When you save a value to a persistent store (database, stream, file, etc.), you
+assign the Element#value like so:</p>
+
+<pre class="code"><span class='my_user identifier id'>my_user</span><span class='dot token'>.</span><span class='status identifier id'>status</span> <span class='assign token'>=</span> <span class='UserStatus constant id'>UserStatus</span><span class='colon2 op'>::</span><span class='active identifier id'>active</span><span class='dot token'>.</span><span class='value identifier id'>value</span>
+</pre>
+
+<p>(more on what you get via "value" later)</p>
+
+<p>If UserStatus::active isn't defined, you get an error immediately that you can
+attribute to a typo in your code. This behavior is by design in Elemental.
+That's a unit test you <em>don't</em> have to write! Simply define your class or module
+and include the Ruby symbols you need:</p>
+
+<pre class="code"><span class='class class kw'>class</span> <span class='AccountStatus constant id'>AccountStatus</span>
+    <span class='extend identifier id'>extend</span> <span class='Elemental constant id'>Elemental</span>
+    <span class='member identifier id'>member</span> <span class='symbol val'>:active</span><span class='comma token'>,</span>       <span class='symbol val'>:display</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'Active'</span>
+    <span class='member identifier id'>member</span> <span class='symbol val'>:delinquent</span><span class='comma token'>,</span>   <span class='symbol val'>:display</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;Account Past Due&quot;</span>
+    <span class='member identifier id'>member</span> <span class='symbol val'>:inactive</span>      <span class='symbol val'>:display</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;Inactive&quot;</span>
+<span class='end end kw'>end</span>
+</pre>
+
+<p>Elemental can return the Element#value as either a Ruby symbol (Symbol) or an
+ordinal (Fixnum) value. The default is a Ruby symbol. To override this and
+return an ordinal value, use "persist_ordinally" as follows:</p>
+
+<pre class="code"><span class='class class kw'>class</span> <span class='AccountStatus constant id'>AccountStatus</span>
+    <span class='extend identifier id'>extend</span> <span class='Elemental constant id'>Elemental</span>
+    <span class='persist_ordinally identifier id'>persist_ordinally</span>
+
+    <span class='member identifier id'>member</span> <span class='symbol val'>:active</span><span class='comma token'>,</span>       <span class='symbol val'>:display</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'Active'</span>
+    <span class='member identifier id'>member</span> <span class='symbol val'>:delinquent</span><span class='comma token'>,</span>   <span class='symbol val'>:display</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;Account Past Due&quot;</span>
+    <span class='member identifier id'>member</span> <span class='symbol val'>:inactive</span>      <span class='symbol val'>:display</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;Inactive&quot;</span>
+<span class='end end kw'>end</span>
+</pre>
+
+<h2>SYNOPSIS:</h2>
+
+<p>Elementals are "containers" for your elements (a.k.a. Ruby symbols).
+They are declared like this:</p>
+
+<pre class="code"><span class='class class kw'>class</span> <span class='AccountStatus constant id'>AccountStatus</span>
+    <span class='extend identifier id'>extend</span> <span class='Elemental constant id'>Elemental</span>
+    <span class='member identifier id'>member</span> <span class='symbol val'>:active</span><span class='comma token'>,</span>       <span class='symbol val'>:display</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'Active'</span><span class='comma token'>,</span> <span class='symbol val'>:default</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='true true kw'>true</span>
+    <span class='member identifier id'>member</span> <span class='symbol val'>:delinquent</span><span class='comma token'>,</span>   <span class='symbol val'>:display</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;Account Past Due&quot;</span>
+    <span class='member identifier id'>member</span> <span class='symbol val'>:inactive</span>      <span class='symbol val'>:display</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;Inactive&quot;</span>
+<span class='end end kw'>end</span>
+
+<span class='class class kw'>class</span> <span class='Fruit constant id'>Fruit</span>
+    <span class='extend identifier id'>extend</span> <span class='Elemental constant id'>Elemental</span>
+    <span class='member identifier id'>member</span> <span class='symbol val'>:orange</span><span class='comma token'>,</span>       <span class='symbol val'>:position</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='integer val'>10</span>
+    <span class='member identifier id'>member</span> <span class='symbol val'>:banana</span><span class='comma token'>,</span>       <span class='symbol val'>:position</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='integer val'>5</span><span class='comma token'>,</span>  <span class='symbol val'>:default</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='true true kw'>true</span>
+    <span class='member identifier id'>member</span> <span class='symbol val'>:blueberry</span><span class='comma token'>,</span>    <span class='symbol val'>:position</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='integer val'>15</span>
+<span class='end end kw'>end</span>
+</pre>
+
+<p>Where:</p>
+
+<ul>
+<li>The symbol is main accessor for Elemental</li>
+<li>Display is what the end-user sees. Display defaults to the symbol's to_s.</li>
+<li>Position lets you define a display sort order (use WidgetType.sort...)</li>
+<li>Position defaults to Ordinal value if not given.</li>
+<li>Absent Position, the default sort order is the order in which elements are declared (ordinal).</li>
+<li>Specifying Position does not change Ordinal value.</li>
+<li>An ElementNotFoundError is raised if you try an nonexistent Symbol.</li>
+</ul>
+
+<p>Another example:</p>
+
+<pre class="code"><span class='class class kw'>class</span> <span class='Color constant id'>Color</span>
+    <span class='extend identifier id'>extend</span> <span class='Elemental constant id'>Elemental</span>
+    <span class='member identifier id'>member</span> <span class='symbol val'>:red</span><span class='comma token'>,</span>      <span class='symbol val'>:display</span> <span class='string val'>&quot;#FF0000&quot;</span>
+    <span class='member identifier id'>member</span> <span class='symbol val'>:green</span><span class='comma token'>,</span>    <span class='symbol val'>:display</span> <span class='string val'>&quot;#00FF00&quot;</span>
+    <span class='member identifier id'>member</span> <span class='symbol val'>:blue</span><span class='comma token'>,</span>     <span class='symbol val'>:display</span> <span class='string val'>&quot;#0000FF&quot;</span>
+<span class='end end kw'>end</span>
+</pre>
+
+<p>So you roll with this for a few months and decided you don't like primary colors?
+Its simple to change the color constants (in display):</p>
+
+<pre class="code"><span class='class class kw'>class</span> <span class='Color constant id'>Color</span>
+    <span class='extend identifier id'>extend</span> <span class='Elemental constant id'>Elemental</span>
+    <span class='member identifier id'>member</span> <span class='symbol val'>:red</span><span class='comma token'>,</span>      <span class='symbol val'>:display</span> <span class='string val'>&quot;#AA5555&quot;</span>
+    <span class='member identifier id'>member</span> <span class='symbol val'>:green</span><span class='comma token'>,</span>    <span class='symbol val'>:display</span> <span class='string val'>&quot;#55AA55&quot;</span>
+    <span class='member identifier id'>member</span> <span class='symbol val'>:blue</span><span class='comma token'>,</span>     <span class='symbol val'>:display</span> <span class='string val'>&quot;#5555AA&quot;</span>
+<span class='end end kw'>end</span>
+</pre>
+
+<p>Your code logic remains the same because the symbols didn't change!</p>
+
+<p>Once you have your Elemental classes defined, replace your conditionals
+that use string literals.</p>
+
+<p>So, instead of:</p>
+
+<pre class="code"><span class='if if kw'>if</span> <span class='widget identifier id'>widget</span><span class='dot token'>.</span><span class='widget_type identifier id'>widget_type</span> <span class='eq op'>==</span> <span class='string val'>&quot;Foo bar&quot;</span>
+</pre>
+
+<p>(where widget is an Activerecord instance and widget_type is an attribute/column)
+(mental note: was that "FOO BAR", "foobar", "Foo Bar", "foo bar", or "Foo bar"??)</p>
+
+<p>Do this and be confident:</p>
+
+<pre class="code"><span class='if if kw'>if</span> <span class='WidgetType constant id'>WidgetType</span><span class='lbrack token'>[</span><span class='widget identifier id'>widget</span><span class='dot token'>.</span><span class='widget_type identifier id'>widget_type</span><span class='rbrack token'>]</span> <span class='eq op'>==</span> <span class='WidgetType constant id'>WidgetType</span><span class='colon2 op'>::</span><span class='foo_bar identifier id'>foo_bar</span>
+</pre>
+
+<p>Or shorter:</p>
+
+<pre class="code"><span class='if if kw'>if</span> <span class='WidgetType constant id'>WidgetType</span><span class='lbrack token'>[</span><span class='widget identifier id'>widget</span><span class='dot token'>.</span><span class='widget_type identifier id'>widget_type</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='is? fid id'>is?</span><span class='lparen token'>(</span><span class='WidgetType constant id'>WidgetType</span><span class='colon2 op'>::</span><span class='foo_bar identifier id'>foo_bar</span><span class='rparen token'>)</span>
+</pre>
+
+<p>Or shorter, still:</p>
+
+<pre class="code"><span class='if if kw'>if</span> <span class='WidgetType constant id'>WidgetType</span><span class='lbrack token'>[</span><span class='widget identifier id'>widget</span><span class='dot token'>.</span><span class='widget_type identifier id'>widget_type</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='is? fid id'>is?</span><span class='lparen token'>(</span><span class='symbol val'>:foo_bar</span><span class='rparen token'>)</span>
+</pre>
+
+<p>Although Elemental wasn't specifically written for Rails, it is trivial to put to use.  Instead
+if creating a new model and migration script and all that, simply establish your Elemental
+class definition and then iterate the Elemental to construct your views as appropriate.</p>
+
+<p>With Elemental, simply populate select dropdowns like this:</p>
+
+<p>in your $RAILS_ROOT/config/initializers/constants.rb:</p>
+
+<pre class="code"><span class='class class kw'>class</span> <span class='AccountStatus constant id'>AccountStatus</span>
+    <span class='extend identifier id'>extend</span> <span class='Elemental constant id'>Elemental</span>
+    <span class='member identifier id'>member</span> <span class='symbol val'>:active</span><span class='comma token'>,</span>       <span class='symbol val'>:display</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'Active'</span><span class='comma token'>,</span> <span class='symbol val'>:default</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='true true kw'>true</span>
+    <span class='member identifier id'>member</span> <span class='symbol val'>:delinquent</span><span class='comma token'>,</span>   <span class='symbol val'>:display</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;Account Past Due&quot;</span>
+    <span class='member identifier id'>member</span> <span class='symbol val'>:inactive</span>      <span class='symbol val'>:display</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;Inactive&quot;</span>
+<span class='end end kw'>end</span>
+</pre>
+
+<p>Then in your view:</p>
+
+<pre class="code"><span class='lt op'>&lt;</span><span class='p identifier id'>p</span><span class='gt op'>&gt;</span><span class='lt op'>&lt;</span><span class='label identifier id'>label</span> <span class='for for kw'>for</span><span class='assign token'>=</span><span class='string val'>&quot;account_status&quot;</span><span class='gt op'>&gt;</span><span class='Account constant id'>Account</span> <span class='Status constant id'>Status</span><span class='lt op'>&lt;</span><span class='regexp val'>/label&gt;&lt;br/</span><span class='gt op'>&gt;</span>
+    <span class='lt op'>&lt;</span><span class='string val'>%= select &quot;user&quot;, &quot;status&quot;,
+        AccountStatus.sort.map{|a| [a.display, a.value]},
+        {   :include_blank =</span><span class='gt op'>&gt;</span> <span class='false false kw'>false</span><span class='comma token'>,</span>
+            <span class='symbol val'>:selected</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='AccountStatus constant id'>AccountStatus</span><span class='dot token'>.</span><span class='defaults identifier id'>defaults</span><span class='dot token'>.</span><span class='first identifier id'>first</span><span class='dot token'>.</span><span class='value identifier id'>value</span> <span class='rbrace token'>}</span>
+    <span class='string val'>%&gt;&lt;/select&gt;</span>
+<span class='lt op'>&lt;</span><span class='regexp val'>/p&gt;
+</span></pre>
+
+<p>Or render checkboxes with:</p>
+
+<pre class="code"><span class='lt op'>&lt;</span><span class='string val'>% Color.sort.each </span><span class='bitor op'>|</span><span class='c identifier id'>c</span><span class='bitor op'>|</span> <span class='do do kw'>do</span> <span class='dstring node'>%&gt;
+    &lt;%= check_box_tag(&quot;user[favorite_colors][#{c.value}]&quot;,
+        &quot;1&quot;, Color.defaults.detect{|color| color == c}) %&gt;</span>
+    <span class='lt op'>&lt;</span><span class='dstring node'>%= &quot;#{c.display}&quot;%&gt;&lt;br /&gt;
+&lt;% end %&gt;
+</span></pre>
+
+<p>Life is simplified because:</p>
+
+<ul>
+<li>No more migrate scripts for tiny tables</li>
+<li>No worries that the auto-incrementer is guaranteeing to assign 
+same ID accross deployments.</li>
+<li>No database penalties looking up rarely changing values</li>
+<li>No worries that an empty lookup table breaks your application logic/flow</li>
+<li>Values that mean something in your app are symbolic while what's displayed 
+and sorted on are free to change as the application grows and evolves.</li>
+</ul>
+
+<p>More than one default is supported (dropdowns only use one, so first.value
+gets you first one, radio buttons or checkboxes can use all defaults). Ordinal
+position is preserved and traditionally shouldn't be changed during the life
+of the project, although, Ruby being Ruby and developers saying "Ruby ain't C,"
+an Elemental's elements almost definitely will get changed by some developer at
+some time.</p>
+
+<p>The chances of the name of the symbol changing is much lower than a developer's
+tendency to keep an orderly house by sorting member elements alphabetically. As
+such, the default behavior for "value" is to return the symbol rather than
+ordinal value and storing as a string in DB, which seems the safest route to
+take albeit not the optimal performance-wise (finding records by integral value
+is faster than string searches, even with indexes in place). If you want to
+override this, simply call "persist_ordinally" when you declare your Elemental
+classes.</p>
+
+<pre class="code"><span class='class class kw'>class</span> <span class='Color constant id'>Color</span>
+    <span class='extend identifier id'>extend</span> <span class='Elemental constant id'>Elemental</span>
+    <span class='persist_ordinally identifier id'>persist_ordinally</span>
+    <span class='member identifier id'>member</span> <span class='symbol val'>:red</span>
+    <span class='member identifier id'>member</span> <span class='symbol val'>:green</span>
+    <span class='member identifier id'>member</span> <span class='symbol val'>:blue</span>
+<span class='end end kw'>end</span>
+</pre>
+
+<p>With that, Color::red.value returns Fixnum 0 instead of the Symbol :red</p>
+
+<p>You can also associate many values with a particular element through custom accessors.<br/>
+To extend the Color example further:</p>
+
+<pre class="code"><span class='class class kw'>class</span> <span class='Color constant id'>Color</span>
+    <span class='extend identifier id'>extend</span> <span class='Elemental constant id'>Elemental</span>
+    <span class='persist_ordinally identifier id'>persist_ordinally</span>
+    <span class='member identifier id'>member</span> <span class='symbol val'>:red</span><span class='comma token'>,</span> <span class='symbol val'>:display</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;Primary Red&quot;</span><span class='comma token'>,</span> <span class='symbol val'>:red</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='integer val'>255</span><span class='comma token'>,</span> <span class='symbol val'>:green</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='integer val'>0</span><span class='comma token'>,</span> <span class='symbol val'>:blue</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='integer val'>0</span><span class='comma token'>,</span> <span class='symbol val'>:hex</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;#FF0000&quot;</span>
+    <span class='member identifier id'>member</span> <span class='symbol val'>:green</span><span class='comma token'>,</span> <span class='symbol val'>:display</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;Primary Green&quot;</span><span class='comma token'>,</span> <span class='symbol val'>:red</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='integer val'>0</span><span class='comma token'>,</span> <span class='symbol val'>:green</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='integer val'>255</span><span class='comma token'>,</span> <span class='symbol val'>:blue</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='integer val'>0</span><span class='comma token'>,</span> <span class='symbol val'>:hex</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;#00FF00&quot;</span>
+    <span class='member identifier id'>member</span> <span class='symbol val'>:blue</span><span class='comma token'>,</span> <span class='symbol val'>:display</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;Primary Blue&quot;</span><span class='comma token'>,</span> <span class='symbol val'>:red</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='integer val'>0</span><span class='comma token'>,</span> <span class='symbol val'>:green</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='integer val'>0</span><span class='comma token'>,</span> <span class='symbol val'>:blue</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='integer val'>255</span><span class='comma token'>,</span> <span class='symbol val'>:hex</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;#0000FF&quot;</span>
+<span class='end end kw'>end</span>
+</pre>
+
+<p>With that:</p>
+
+<pre class="code"><span class='Color constant id'>Color</span><span class='colon2 op'>::</span><span class='red identifier id'>red</span><span class='dot token'>.</span><span class='red identifier id'>red</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='integer val'>255</span>
+<span class='Color constant id'>Color</span><span class='colon2 op'>::</span><span class='red identifier id'>red</span><span class='dot token'>.</span><span class='green identifier id'>green</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='integer val'>0</span>
+<span class='Color constant id'>Color</span><span class='colon2 op'>::</span><span class='red identifier id'>red</span><span class='dot token'>.</span><span class='blue identifier id'>blue</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='integer val'>0</span>
+<span class='Color constant id'>Color</span><span class='colon2 op'>::</span><span class='red identifier id'>red</span><span class='dot token'>.</span><span class='hex identifier id'>hex</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;#FF0000&quot;</span>
+</pre>
+
+<p>Elements can be accessed multiple ways:</p>
+
+<pre class="code"><span class='def def kw'>def</span> <span class='test_different_retrievals_get_same_element identifier id'>test_different_retrievals_get_same_element</span>
+    <span class='a1 identifier id'>a1</span> <span class='assign token'>=</span> <span class='Car constant id'>Car</span><span class='colon2 op'>::</span><span class='honda identifier id'>honda</span>
+    <span class='a2 identifier id'>a2</span> <span class='assign token'>=</span> <span class='Car constant id'>Car</span><span class='colon2 op'>::</span><span class='Honda constant id'>Honda</span>
+    <span class='a3 identifier id'>a3</span> <span class='assign token'>=</span> <span class='Car constant id'>Car</span><span class='lbrack token'>[</span><span class='symbol val'>:honda</span><span class='rbrack token'>]</span>
+    <span class='a4 identifier id'>a4</span> <span class='assign token'>=</span> <span class='Car constant id'>Car</span><span class='lbrack token'>[</span><span class='symbol val'>:Honda</span><span class='rbrack token'>]</span>
+    <span class='a5 identifier id'>a5</span> <span class='assign token'>=</span> <span class='Car constant id'>Car</span><span class='lbrack token'>[</span><span class='string val'>&quot;Honda&quot;</span><span class='rbrack token'>]</span>
+    <span class='a6 identifier id'>a6</span> <span class='assign token'>=</span> <span class='Car constant id'>Car</span><span class='lbrack token'>[</span><span class='string val'>&quot;honda&quot;</span><span class='rbrack token'>]</span>
+    <span class='a7 identifier id'>a7</span> <span class='assign token'>=</span> <span class='Car constant id'>Car</span><span class='dot token'>.</span><span class='first identifier id'>first</span>
+    <span class='a8 identifier id'>a8</span> <span class='assign token'>=</span> <span class='Car constant id'>Car</span><span class='dot token'>.</span><span class='last identifier id'>last</span><span class='dot token'>.</span><span class='succ identifier id'>succ</span>
+    <span class='a9 identifier id'>a9</span> <span class='assign token'>=</span> <span class='Car constant id'>Car</span><span class='lbrack token'>[</span><span class='integer val'>0</span><span class='rbrack token'>]</span>
+    <span class='assert_element_sameness identifier id'>assert_element_sameness</span><span class='lparen token'>(</span><span class='a1 identifier id'>a1</span><span class='comma token'>,</span> <span class='a2 identifier id'>a2</span><span class='comma token'>,</span> <span class='symbol val'>:honda</span><span class='rparen token'>)</span>
+    <span class='assert_element_sameness identifier id'>assert_element_sameness</span><span class='lparen token'>(</span><span class='a2 identifier id'>a2</span><span class='comma token'>,</span> <span class='a3 identifier id'>a3</span><span class='comma token'>,</span> <span class='symbol val'>:honda</span><span class='rparen token'>)</span>
+    <span class='assert_element_sameness identifier id'>assert_element_sameness</span><span class='lparen token'>(</span><span class='a4 identifier id'>a4</span><span class='comma token'>,</span> <span class='a5 identifier id'>a5</span><span class='comma token'>,</span> <span class='symbol val'>:honda</span><span class='rparen token'>)</span>
+    <span class='assert_element_sameness identifier id'>assert_element_sameness</span><span class='lparen token'>(</span><span class='a6 identifier id'>a6</span><span class='comma token'>,</span> <span class='a7 identifier id'>a7</span><span class='comma token'>,</span> <span class='symbol val'>:honda</span><span class='rparen token'>)</span>
+    <span class='assert_element_sameness identifier id'>assert_element_sameness</span><span class='lparen token'>(</span><span class='a8 identifier id'>a8</span><span class='comma token'>,</span> <span class='a1 identifier id'>a1</span><span class='comma token'>,</span> <span class='symbol val'>:honda</span><span class='rparen token'>)</span>
+    <span class='assert_element_sameness identifier id'>assert_element_sameness</span><span class='lparen token'>(</span><span class='a9 identifier id'>a9</span><span class='comma token'>,</span> <span class='a2 identifier id'>a2</span><span class='comma token'>,</span> <span class='symbol val'>:honda</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+
+<p>There are also several convenience aliases to pull ordinal, value, symbol and display:</p>
+
+<pre class="code"><span class='def def kw'>def</span> <span class='test_aliases identifier id'>test_aliases</span>
+    <span class='assert_equal identifier id'>assert_equal</span><span class='lparen token'>(</span><span class='Car constant id'>Car</span><span class='colon2 op'>::</span><span class='toyota identifier id'>toyota</span><span class='dot token'>.</span><span class='index identifier id'>index</span><span class='comma token'>,</span> <span class='Car constant id'>Car</span><span class='colon2 op'>::</span><span class='toyota identifier id'>toyota</span><span class='dot token'>.</span><span class='to_i identifier id'>to_i</span><span class='rparen token'>)</span>
+    <span class='assert_equal identifier id'>assert_equal</span><span class='lparen token'>(</span><span class='Car constant id'>Car</span><span class='colon2 op'>::</span><span class='toyota identifier id'>toyota</span><span class='dot token'>.</span><span class='to_i identifier id'>to_i</span><span class='comma token'>,</span> <span class='Car constant id'>Car</span><span class='colon2 op'>::</span><span class='toyota identifier id'>toyota</span><span class='dot token'>.</span><span class='to_i identifier id'>to_i</span><span class='rparen token'>)</span>
+    <span class='assert_equal identifier id'>assert_equal</span><span class='lparen token'>(</span><span class='Car constant id'>Car</span><span class='colon2 op'>::</span><span class='toyota identifier id'>toyota</span><span class='dot token'>.</span><span class='to_int identifier id'>to_int</span><span class='comma token'>,</span> <span class='Car constant id'>Car</span><span class='colon2 op'>::</span><span class='toyota identifier id'>toyota</span><span class='dot token'>.</span><span class='to_i identifier id'>to_i</span><span class='rparen token'>)</span>
+    <span class='assert_equal identifier id'>assert_equal</span><span class='lparen token'>(</span><span class='Car constant id'>Car</span><span class='colon2 op'>::</span><span class='toyota identifier id'>toyota</span><span class='dot token'>.</span><span class='ord identifier id'>ord</span><span class='comma token'>,</span> <span class='Car constant id'>Car</span><span class='colon2 op'>::</span><span class='toyota identifier id'>toyota</span><span class='dot token'>.</span><span class='to_i identifier id'>to_i</span><span class='rparen token'>)</span>
+    <span class='assert_equal identifier id'>assert_equal</span><span class='lparen token'>(</span><span class='Car constant id'>Car</span><span class='colon2 op'>::</span><span class='toyota identifier id'>toyota</span><span class='dot token'>.</span><span class='ordinal identifier id'>ordinal</span><span class='comma token'>,</span> <span class='Car constant id'>Car</span><span class='colon2 op'>::</span><span class='toyota identifier id'>toyota</span><span class='dot token'>.</span><span class='to_i identifier id'>to_i</span><span class='rparen token'>)</span>
+    <span class='assert_equal identifier id'>assert_equal</span><span class='lparen token'>(</span><span class='Car constant id'>Car</span><span class='colon2 op'>::</span><span class='toyota identifier id'>toyota</span><span class='dot token'>.</span><span class='to_sym identifier id'>to_sym</span><span class='comma token'>,</span> <span class='Car constant id'>Car</span><span class='colon2 op'>::</span><span class='toyota identifier id'>toyota</span><span class='dot token'>.</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
+    <span class='assert_equal identifier id'>assert_equal</span><span class='lparen token'>(</span><span class='symbol val'>:toyota</span><span class='comma token'>,</span> <span class='Car constant id'>Car</span><span class='colon2 op'>::</span><span class='toyota identifier id'>toyota</span><span class='dot token'>.</span><span class='to_sym identifier id'>to_sym</span><span class='rparen token'>)</span>
+    <span class='assert_equal identifier id'>assert_equal</span><span class='lparen token'>(</span><span class='symbol val'>:toyota</span><span class='comma token'>,</span> <span class='Car constant id'>Car</span><span class='colon2 op'>::</span><span class='toyota identifier id'>toyota</span><span class='dot token'>.</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
+    <span class='assert_equal identifier id'>assert_equal</span><span class='lparen token'>(</span><span class='string val'>&quot;toyota&quot;</span><span class='comma token'>,</span> <span class='Car constant id'>Car</span><span class='colon2 op'>::</span><span class='toyota identifier id'>toyota</span><span class='dot token'>.</span><span class='display identifier id'>display</span><span class='rparen token'>)</span>
+    <span class='assert_equal identifier id'>assert_equal</span><span class='lparen token'>(</span><span class='string val'>&quot;toyota&quot;</span><span class='comma token'>,</span> <span class='Car constant id'>Car</span><span class='colon2 op'>::</span><span class='toyota identifier id'>toyota</span><span class='dot token'>.</span><span class='humanize identifier id'>humanize</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+
+<p>Full test coverage is provided.</p>
+
+<p>One known limitation (which is probably a reflection of my not-so-great Ruby skills):</p>
+
+<p>You cannot inherit and Elemental from another Elemental, esp. since none of the classes or
+modules are ever actually instantiated.  The following will NOT WORK:</p>
+
+<pre class="code"><span class='class class kw'>class</span> <span class='Fruit constant id'>Fruit</span>           <span class='comment val'># OK</span>
+    <span class='extend identifier id'>extend</span> <span class='Elemental constant id'>Elemental</span>
+    <span class='member identifier id'>member</span> <span class='symbol val'>:orange</span>
+    <span class='member identifier id'>member</span> <span class='symbol val'>:banana</span>
+    <span class='member identifier id'>member</span> <span class='symbol val'>:blueberry</span>
+<span class='end end kw'>end</span>
+
+<span class='class class kw'>class</span> <span class='Vegetable constant id'>Vegetable</span>       <span class='comment val'># OK</span>
+    <span class='extend identifier id'>extend</span> <span class='Elemental constant id'>Elemental</span>
+    <span class='member identifier id'>member</span> <span class='symbol val'>:potato</span>
+    <span class='member identifier id'>member</span> <span class='symbol val'>:carrot</span>
+    <span class='member identifier id'>member</span> <span class='symbol val'>:tomato</span>
+<span class='end end kw'>end</span>
+
+<span class='class class kw'>class</span> <span class='Food constant id'>Food</span>            <span class='comment val'># NOT OK</span>
+    <span class='extend identifier id'>extend</span> <span class='Fruit constant id'>Fruit</span>
+    <span class='extend identifier id'>extend</span> <span class='Vegetable constant id'>Vegetable</span>
+<span class='end end kw'>end</span>
+</pre>
+
+<p>Also, this doesn't work, either:</p>
+
+<pre class="code"><span class='class class kw'>class</span> <span class='Food constant id'>Food</span> <span class='lt op'>&lt;</span> <span class='Fruit constant id'>Fruit</span>   <span class='comment val'># NOT OK</span>
+    <span class='extend identifier id'>extend</span> <span class='Vegetable constant id'>Vegetable</span>
+<span class='end end kw'>end</span>
+</pre>
+
+<p>Nor:</p>
+
+<pre class="code"><span class='class class kw'>class</span> <span class='ExoticFruit constant id'>ExoticFruit</span> <span class='lt op'>&lt;</span> <span class='Fruit constant id'>Fruit</span>   <span class='comment val'># NOT OK</span>
+    <span class='member identifier id'>member</span> <span class='symbol val'>:papaya</span>
+    <span class='member identifier id'>member</span> <span class='symbol val'>:mango</span>
+<span class='end end kw'>end</span>
+</pre>
+
+<h2>LICENSE:</h2>
+
+<p>(The MIT License)</p>
+
+<p>Copyright (c) 2009 Michael Lang</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+'Software'), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p></div></div>
+    
+    <div id="footer">
+  Generated on Mon Nov 23 13:48:06 2009 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
+  0.4.0 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

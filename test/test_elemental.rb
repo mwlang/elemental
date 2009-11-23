@@ -1,7 +1,11 @@
 #!/usr/bin/env ruby
 
 require 'test/unit'
-require 'lib/elemental'
+begin
+  require 'lib/elemental'
+rescue LoadError
+  require 'elemental'
+end
 
 module TestElemental
 
@@ -365,6 +369,10 @@ module TestElemental
       c.each{|element| assert(!a.include?(element), "a, #{a.inspect} should not contain #{element.inspect}")}
     end
 
+    def test_inspect
+      assert_equal(Fruit.inspect.match(/\#\<Element\:/).to_s, "#<Element:")
+    end
+    
     def test_is_conditional
       assert_equal(true, Fruit::banana.is?(:banana))
       assert_equal(true, Fruit::banana.is?(Fruit::banana))

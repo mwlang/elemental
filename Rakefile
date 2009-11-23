@@ -4,7 +4,7 @@
 
 begin
   require 'bones'
-  Bones.setup
+  # Bones.setup
 rescue LoadError
   begin
     load 'tasks/setup.rb'
@@ -18,12 +18,12 @@ require 'elemental'
 
 task :default => 'test:run'
 
-PROJ.name = 'elemental'
-PROJ.authors = 'Michael Lang'
-PROJ.email = 'mwlang@cybrains.net'
-PROJ.url = 'http://github.com/mwlang/elemental/tree/master'
-PROJ.version = Elemental::VERSION
-PROJ.rubyforge.name = 'elemental'
-PROJ.spec.opts << '--color'
+# PROJ.name = 'elemental'
+# PROJ.authors = 'Michael Lang'
+# PROJ.email = 'mwlang@cybrains.net'
+# PROJ.url = 'http://github.com/mwlang/elemental/tree/master'
+# PROJ.version = Elemental::VERSION
+# PROJ.rubyforge.name = 'elemental'
+# PROJ.spec.opts << '--color'
 
 # EOF

@@ -11,13 +11,13 @@ Gem::Specification.new do |s|
   s.platform = Gem::Platform::RUBY
   s.files    = [ 
 		"elemental.gemspec", 
-		"README.txt",
+		"README.md",
 		"Rakefile",
 		"lib/element.rb",
 		"lib/elemental.rb",
 		"test/test_elemental.rb"
 	]
-  s.rdoc_options = ["--line-numbers", "--inline-source", "--title", "Elemental", "--main", "README.txt"]
-  s.extra_rdoc_files = ["README.txt"]
+  s.rdoc_options = ["--line-numbers", "--inline-source", "--title", "Elemental", "--main", "README.md"]
+  s.extra_rdoc_files = ["README.md"]
 end
 

@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name     = "elemental"
-  s.version  = "0.1.1"
-  s.date     = "2009-06-03"
+  s.version  = "0.1.2"
+  s.date     = "2009-11-23"
   s.summary  = "Implements a set of elements that are enumerable."
   s.email    = "mwlang@cybrains.net"
   s.homepage = "http://github.com/mwlang/elemental"
